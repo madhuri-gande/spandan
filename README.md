@@ -12,32 +12,28 @@ escalates to additional donors automatically — without human nudging.
 
 ## Live demo (EC2)
 
-**Share this URL on WhatsApp** (clickable domain, not a raw IP):
-
 | | URL |
 |---|---|
-| **Coordinator dashboard** | http://spandan-demo.98.84.159.117.nip.io |
-| **MailPit inbox** (sent emails) | http://spandan-demo.98.84.159.117.nip.io/mail |
+| **Coordinator dashboard** | http://98.84.159.117 |
+| **MailPit inbox** (sent emails) | http://98.84.159.117/mail |
 | **GitHub** | https://github.com/madhuri-gande/spandan |
-
-Direct IP (also works): http://98.84.159.117
 
 **Login:** username `coordinator` · password set by deployer (not in repo).
 
 **Stack:** EC2 `t3.small` · Amazon Linux 2023 · nginx → Streamlit · MailPit · DynamoDB · Bedrock Claude Haiku 4.5
 
-### Even shorter name (optional, ~5 min)
+### WhatsApp-friendly link (recommended)
 
-Sign up at [DuckDNS](https://www.duckdns.org), create subdomain `spandan-demo`, then on EC2:
+Raw IPs often don't hyperlink in WhatsApp. Use **DuckDNS** (~5 min, free):
 
-```bash
-# Add DUCKDNS_TOKEN=... and DUCKDNS_DOMAIN=spandan-demo to .env
-./deploy/duckdns-update.sh
-# Set PUBLIC_BASE_URL=http://spandan-demo.duckdns.org in .env, update
-# REPLY_BASE_URL / MAILPIT_UI_URL, then: sudo systemctl restart spandan
-```
+1. Sign in at [duckdns.org](https://www.duckdns.org) → create subdomain **`spandan-demo`**
+2. Set IP to **`98.84.159.117`**
+3. On EC2, add `DUCKDNS_TOKEN=...` to `.env`, run `./deploy/duckdns-update.sh`
+4. Set `PUBLIC_BASE_URL=http://spandan-demo.duckdns.org` (+ update `REPLY_BASE_URL` / `MAILPIT_UI_URL`), restart spandan
 
-You get **http://spandan-demo.duckdns.org** — ideal for WhatsApp and slides.
+Share: **http://spandan-demo.duckdns.org**
+
+> **Note:** `*.nip.io` hostnames are blocked on many Indian/corporate networks — use the direct IP or DuckDNS instead.
 
 ---
 
