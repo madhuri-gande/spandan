@@ -10,6 +10,20 @@ escalates to additional donors automatically — without human nudging.
 
 ---
 
+## Live demo (EC2)
+
+| | URL |
+|---|---|
+| **Coordinator dashboard** | http://98.84.159.117 |
+| **MailPit inbox** (sent emails) | http://98.84.159.117/mail |
+| **GitHub** | https://github.com/madhuri-gande/spandan |
+
+**Login:** username `coordinator` · password set by deployer (not in repo).
+
+**Stack:** EC2 `t3.small` · Amazon Linux 2023 · nginx → Streamlit · MailPit · DynamoDB · Bedrock Claude Haiku 4.5
+
+---
+
 ## What it does
 
 | Capability | Details |
@@ -116,7 +130,9 @@ cd spandan
 # Configure (use IAM role — leave AWS_ACCESS_KEY_ID blank)
 cp .env.example .env
 nano .env  # fill in REPLY_TOKEN_SECRET, AUTH_COORDINATOR_PASSWORD, etc.
-#         # change REPLY_BASE_URL=http://<public-ip>/Reply
+#         # REPLY_BASE_URL=http://<public-ip>/Reply
+#         # MAILPIT_UI_URL=http://<public-ip>/mail
+#         # MAILPIT_WEBROOT=/mail
 
 # One-shot install + start as systemd service
 sudo ./deploy/ec2-setup.sh --systemd
