@@ -216,3 +216,33 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+.env
+venv/
+__pycache__/
+*.pkl
+*.pyc
+.DS_Store
+.streamlit/secrets.toml
+data/raw/*.csv
+data/mailpit.db
+data/mailpit.db-shm
+data/mailpit.db-wal
+
+# MailPit binary (~25MB) is platform-specific and >Github's 100MB-friendly
+# threshold. Don't commit it; tools/install_mailpit.sh fetches the right
+# build for the host on first run.
+tools/mailpit
+tools/mailpit.exe
+
+# Local trained ML artifacts (regenerated on first run via
+# `python services/ranking.py`, which trains and dumps the model).
+models/*.pkl
+
+# Logs (we keep the directory, not its contents)
+logs/*.log
+
+# OS / IDE crud
+Thumbs.db
+.idea/
+.vscode/
