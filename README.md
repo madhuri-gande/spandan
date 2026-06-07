@@ -14,8 +14,9 @@ escalates to additional donors automatically — without human nudging.
 
 | | URL |
 |---|---|
-| **Coordinator dashboard** | **http://98.84.159.117** |
-| **MailPit inbox** (sent emails) | **http://98.84.159.117/mail** |
+| **Live demo (share this)** | **https://bit.ly/4vCaAQ4** → dashboard |
+| **Coordinator dashboard** | http://98.84.159.117 |
+| **MailPit inbox** (sent emails) | http://98.84.159.117/mail |
 | **GitHub** | https://github.com/madhuri-gande/spandan |
 | **Pitch deck (PPT + QR)** | [docs/Spandan_Hackathon_Pitch.pptx](docs/Spandan_Hackathon_Pitch.pptx) |
 | **Submission pack** | [docs/SUBMISSION.md](docs/SUBMISSION.md) |
@@ -24,16 +25,11 @@ escalates to additional donors automatically — without human nudging.
 
 **Stack:** EC2 `t3.small` · Amazon Linux 2023 · nginx :80 → Streamlit · MailPit `/mail` · DynamoDB · Bedrock Claude Haiku 4.5
 
-### Share on WhatsApp (Bitly — recommended)
+### Share on WhatsApp
 
-Raw IPs often don't hyperlink in chat apps. Create two short links at [bitly.com](https://bitly.com) or [tinyurl.com](https://tinyurl.com):
+**https://bit.ly/4vCaAQ4** — clickable short link to the live dashboard (works on any phone).
 
-| Destination | Paste this URL when creating the short link |
-|---|---|
-| Dashboard | `http://98.84.159.117` |
-| MailPit inbox | `http://98.84.159.117/mail` |
-
-Share the Bitly links — they work on any phone and redirect to the live EC2 demo.
+MailPit inbox: open from the dashboard header, or use http://98.84.159.117/mail directly.
 
 ### QR codes (for slides / print)
 

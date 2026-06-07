@@ -8,7 +8,8 @@ Copy-paste for judges, WhatsApp, and submission forms.
 
 | | Link |
 |---|---|
-| **Dashboard** | http://98.84.159.117 |
+| **Live demo (Bitly — share on WhatsApp)** | **https://bit.ly/4vCaAQ4** |
+| **Dashboard (direct)** | http://98.84.159.117 |
 | **Email inbox (MailPit)** | http://98.84.159.117/mail |
 | **Source code** | https://github.com/madhuri-gande/spandan |
 | **Pitch deck** | [docs/Spandan_Hackathon_Pitch.pptx](Spandan_Hackathon_Pitch.pptx) |
@@ -17,16 +18,11 @@ Copy-paste for judges, WhatsApp, and submission forms.
 
 ---
 
-## WhatsApp / short links (Bitly)
+## WhatsApp / short link
 
-If you created Bitly links, add them here and in the README:
+**https://bit.ly/4vCaAQ4** → opens the live coordinator dashboard.
 
-| | Bitly (optional) | Direct URL |
-|---|---|---|
-| Dashboard | _paste your bit.ly link_ | http://98.84.159.117 |
-| MailPit | _paste your bit.ly link_ | http://98.84.159.117/mail |
-
-Bitly redirects to the direct URL — works on any phone with internet.
+Works on any phone with internet. MailPit is reachable from the dashboard header or at http://98.84.159.117/mail.
 
 ---
 
