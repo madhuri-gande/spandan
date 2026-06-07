@@ -28,11 +28,12 @@ Works on any phone with internet. MailPit is reachable from the dashboard header
 
 ## QR codes (in pitch deck)
 
-Scan from **slide 8** of `Spandan_Hackathon_Pitch.pptx`, or use:
+Scan from the **Live demo** slide of `Spandan_Hackathon_Pitch.pptx` (17 slides, finalist edition), or use:
 
 - `docs/assets/qr-dashboard.png` → dashboard
 - `docs/assets/qr-mailpit.png` → MailPit inbox
 - `docs/assets/qr-github.png` → GitHub repo
+- `docs/assets/qr-bitly.png` → https://bit.ly/4vCaAQ4 (WhatsApp share)
 
 ---
 

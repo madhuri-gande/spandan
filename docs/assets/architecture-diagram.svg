@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fafbfc"/>
+      <stop offset="100%" style="stop-color:#f0f2f5"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#c8102e"/>
+      <stop offset="100%" style="stop-color:#9a0c24"/>
+    </linearGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#5a6068"/>
+    </marker>
+  </defs>
+
+  <rect width="920" height="520" fill="url(#bg)"/>
+  <text x="460" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#22222b">Spandan - System Architecture</text>
+  <text x="460" y="58" text-anchor="middle" font-size="12" fill="#5a6068">EC2 t3.small | nginx :80 | us-east-1</text>
+
+  <g filter="url(#shadow)">
+    <rect x="40" y="88" width="130" height="52" rx="10" fill="#fff" stroke="#e0e4ea"/>
+    <text x="105" y="112" text-anchor="middle" font-size="12" font-weight="600" fill="#222">Coordinator</text>
+    <text x="105" y="128" text-anchor="middle" font-size="10" fill="#5a6068">Streamlit login</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="40" y="156" width="130" height="52" rx="10" fill="#fff" stroke="#e0e4ea"/>
+    <text x="105" y="180" text-anchor="middle" font-size="12" font-weight="600" fill="#222">Donor</text>
+    <text x="105" y="196" text-anchor="middle" font-size="10" fill="#5a6068">Email / magic link</text>
+  </g>
+
+  <rect x="200" y="78" width="400" height="300" rx="14" fill="#fff" stroke="#c8102e" stroke-width="2" stroke-dasharray="6 4" opacity="0.95"/>
+  <text x="400" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#c8102e" letter-spacing="1">EC2 INSTANCE</text>
+
+  <g filter="url(#shadow)">
+    <rect x="220" y="118" width="360" height="44" rx="8" fill="#eef3fc" stroke="#b8c9e8"/>
+    <text x="400" y="145" text-anchor="middle" font-size="13" font-weight="600" fill="#2a4ea1">nginx :80 -&gt; public IP</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="220" y="176" width="170" height="56" rx="8" fill="#fff" stroke="#e0e4ea"/>
+    <text x="305" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#222">Streamlit</text>
+    <text x="305" y="218" text-anchor="middle" font-size="10" fill="#5a6068">Dashboard / Reply</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="410" y="176" width="170" height="56" rx="8" fill="#fff" stroke="#e0e4ea"/>
+    <text x="495" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#222">MailPit</text>
+    <text x="495" y="218" text-anchor="middle" font-size="10" fill="#5a6068">/mail inbox</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="220" y="248" width="360" height="56" rx="8" fill="url(#red)"/>
+    <text x="400" y="272" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Autonomous Agent</text>
+    <text x="400" y="290" text-anchor="middle" font-size="10" fill="#ffdddd">forecast -&gt; rank -&gt; email -&gt; reply</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="220" y="318" width="170" height="44" rx="8" fill="#f8f9fb" stroke="#e0e4ea"/>
+    <text x="305" y="345" text-anchor="middle" font-size="11" font-weight="600" fill="#222">ML Ranking</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="410" y="318" width="170" height="44" rx="8" fill="#f8f9fb" stroke="#e0e4ea"/>
+    <text x="495" y="345" text-anchor="middle" font-size="11" font-weight="600" fill="#222">SMTP Delivery</text>
+  </g>
+
+  <rect x="640" y="78" width="240" height="300" rx="14" fill="#fff" stroke="#ff9900" stroke-width="2"/>
+  <text x="760" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#ff9900" letter-spacing="1">AWS</text>
+
+  <g filter="url(#shadow)">
+    <rect x="660" y="118" width="200" height="100" rx="8" fill="#fff5e6" stroke="#ffcc80"/>
+    <text x="760" y="142" text-anchor="middle" font-size="12" font-weight="600" fill="#222">DynamoDB</text>
+    <text x="760" y="162" text-anchor="middle" font-size="10" fill="#5a6068">donors, bridges</text>
+    <text x="760" y="178" text-anchor="middle" font-size="10" fill="#5a6068">messages, donations</text>
+    <text x="760" y="198" text-anchor="middle" font-size="10" fill="#5a6068">agent_log</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="660" y="236" width="200" height="72" rx="8" fill="#fff5e6" stroke="#ffcc80"/>
+    <text x="760" y="262" text-anchor="middle" font-size="12" font-weight="600" fill="#222">Amazon Bedrock</text>
+    <text x="760" y="282" text-anchor="middle" font-size="10" fill="#5a6068">Claude Haiku 4.5</text>
+    <text x="760" y="298" text-anchor="middle" font-size="10" fill="#5a6068">multilingual + intent</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="660" y="326" width="200" height="40" rx="8" fill="#f8f9fb" stroke="#e0e4ea"/>
+    <text x="760" y="351" text-anchor="middle" font-size="10" fill="#5a6068">IAM role, no keys on disk</text>
+  </g>
+
+  <line x1="170" y1="114" x2="218" y2="140" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="170" y1="182" x2="218" y2="200" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="400" y1="162" x2="400" y2="174" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="305" y1="232" x2="350" y2="248" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="495" y1="232" x2="450" y2="248" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="400" y1="304" x2="305" y2="318" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="400" y1="304" x2="495" y2="318" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="580" y1="276" x2="658" y2="168" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="580" y1="276" x2="658" y2="272" stroke="#5a6068" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="495" y1="232" x2="580" y2="232" stroke="#5a6068" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="400" width="840" height="96" rx="12" fill="#fff" stroke="#e0e4ea" filter="url(#shadow)"/>
+  <text x="460" y="426" text-anchor="middle" font-size="13" font-weight="700" fill="#c8102e">Autonomous loop (every ~30s)</text>
+  <text x="460" y="452" text-anchor="middle" font-size="12" fill="#22222b">Forecast 90-day pipeline | ML rank | Bedrock email | MailPit | YES/NO | confirm or next donor</text>
+  <text x="460" y="478" text-anchor="middle" font-size="11" fill="#5a6068">Live: http://98.84.159.117 | MailPit: /mail | GitHub: github.com/madhuri-gande/spandan</text>
+</svg>

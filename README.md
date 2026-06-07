@@ -56,28 +56,9 @@ Generated in `docs/assets/` (`qr-dashboard.png`, `qr-mailpit.png`, `qr-github.pn
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│ Streamlit dashboard (app/) ── coordinator login             │
-│   ├─ KPIs (donors, bridges, donations 24h)                  │
-│   ├─ Patient pipeline (next 90 days)                        │
-│   ├─ Manual actions (advance / process / email next)        │
-│   └─ Surge expander (emergency parallel blast)              │
-└──────────────┬──────────────────────────────────────────────┘
-               │
-┌──────────────▼─────────────┐    ┌────────────────────────┐
-│ services/agent.py          │───▶│ AWS DynamoDB           │
-│  - background thread       │    │ donors / bridges /     │
-│  - per-patient state mach  │    │ messages / agent_log / │
-│  - cooldowns + dedup       │    │ donations              │
-└──────┬─────────┬───────────┘    └────────────────────────┘
-       │         │
-┌──────▼──┐  ┌───▼────────┐    ┌─────────────────────────┐
-│ Bedrock │  │ MailPit /  │───▶│ Donor inbox (HTML email │
-│ Claude  │  │ Amazon SES │    │ with magic YES/NO link) │
-│ Haiku   │  └────────────┘    └─────────────────────────┘
-└─────────┘
-```
+![Spandan architecture](docs/assets/architecture-diagram.svg)
+
+Full diagrams (Mermaid + tables): [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ---
 
