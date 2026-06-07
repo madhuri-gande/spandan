@@ -99,7 +99,7 @@ Open:
 | AMI | Amazon Linux 2023 (or Ubuntu 22.04) |
 | Type | `t3.small` (2 vCPU, 2 GB) — fits comfortably |
 | Storage | 20 GB gp3 |
-| Security Group | inbound `22` (SSH from your IP), `8501` (Streamlit from `0.0.0.0/0`) |
+| Security Group | inbound `22` (SSH from your IP), `80` (HTTP/nginx from `0.0.0.0/0`) |
 | IAM Role | `SpandanEC2Role` with policies: `AmazonDynamoDBFullAccess`, `AmazonBedrockFullAccess`, optionally `AmazonS3FullAccess` if you use S3 for ML model checkpoints |
 
 ### 2. Bootstrap
@@ -116,7 +116,7 @@ cd spandan
 # Configure (use IAM role — leave AWS_ACCESS_KEY_ID blank)
 cp .env.example .env
 nano .env  # fill in REPLY_TOKEN_SECRET, AUTH_COORDINATOR_PASSWORD, etc.
-#         # change REPLY_BASE_URL=http://<public-ip>:8501/Reply
+#         # change REPLY_BASE_URL=http://<public-ip>/Reply
 
 # One-shot install + start as systemd service
 sudo ./deploy/ec2-setup.sh --systemd
@@ -129,12 +129,12 @@ sudo systemctl status spandan        # should show "active (running)"
 sudo journalctl -u spandan -f        # tail logs
 ```
 
-Visit `http://<public-ip>:8501` — login with the password from your `.env`.
+Visit `http://<public-ip>` — login with the password from your `.env`.
 
 ### 4. Optional hardening
 
 - Put a reverse proxy (nginx / Caddy) in front for HTTPS via Let's Encrypt.
-- Restrict the security group `8501` source to specific IPs during the demo.
+- Restrict the security group `80` source to specific IPs during the demo.
 - Switch `DELIVERY_BACKEND=ses` and verify a sender domain in Amazon SES
   for real outbound email instead of MailPit.
 

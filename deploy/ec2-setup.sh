@@ -31,7 +31,7 @@ if command -v dnf >/dev/null 2>&1; then           # Amazon Linux 2023 / Fedora
     # refuses to replace it without --allowerasing. The minimal build
     # is fully API-compatible for our needs (HTTP downloads in the
     # MailPit installer).
-    sudo dnf -y install python3.11 python3.11-pip sqlite tar gzip git
+    sudo dnf -y install python3.11 python3.11-pip sqlite tar gzip git nginx
 elif command -v apt-get >/dev/null 2>&1; then     # Ubuntu / Debian
     sudo apt-get update -y
     sudo apt-get install -y python3.11 python3.11-venv python3-pip sqlite3 tar gzip curl git
@@ -64,6 +64,15 @@ python data/load_dataset.py || {
 }
 
 mkdir -p logs data
+
+echo "==> Configuring nginx reverse proxy (port 80 → Streamlit :8501) ..."
+sudo cp deploy/nginx-spandan.conf /etc/nginx/conf.d/spandan.conf
+if [ -f /etc/nginx/conf.d/default.conf ]; then
+    sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.disabled
+fi
+sudo nginx -t
+sudo systemctl enable nginx
+sudo systemctl restart nginx
 
 if [ "$INSTALL_SYSTEMD" = "1" ]; then
     echo "==> Installing systemd service ..."
@@ -107,12 +116,12 @@ Spandan EC2 setup complete.
 Next steps:
   1. Make sure $PROJECT_ROOT/.env exists. Copy from .env.example
      and fill in real values (or use IAM role + leave AWS keys blank).
-  2. Open port 8501 in the EC2 Security Group (Streamlit dashboard).
+  2. Open port 80 in the EC2 Security Group (nginx → Streamlit).
   3. Start the stack:
        ./run-stack.sh                # foreground (for first-time test)
        sudo systemctl start spandan  # background (if you used --systemd)
 
 Dashboard URL:
-       http://<ec2-public-ip>:8501
+       http://<ec2-public-ip>        (nginx on port 80)
 ============================================================
 EOF
