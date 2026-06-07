@@ -27,7 +27,11 @@ PROJECT_ROOT="$(pwd)"
 
 echo "==> Installing OS packages ..."
 if command -v dnf >/dev/null 2>&1; then           # Amazon Linux 2023 / Fedora
-    sudo dnf -y install python3.11 python3.11-pip sqlite tar gzip curl git
+    # Skip `curl` here — Amazon Linux 2023 ships `curl-minimal` and dnf
+    # refuses to replace it without --allowerasing. The minimal build
+    # is fully API-compatible for our needs (HTTP downloads in the
+    # MailPit installer).
+    sudo dnf -y install python3.11 python3.11-pip sqlite tar gzip git
 elif command -v apt-get >/dev/null 2>&1; then     # Ubuntu / Debian
     sudo apt-get update -y
     sudo apt-get install -y python3.11 python3.11-venv python3-pip sqlite3 tar gzip curl git
