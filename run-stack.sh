@@ -78,9 +78,14 @@ fi
 if [ -f "$MAILPIT_DB" ] && command -v sqlite3 >/dev/null 2>&1; then
     sqlite3 "$MAILPIT_DB" "PRAGMA wal_checkpoint(TRUNCATE);" >/dev/null 2>&1 || true
 fi
-./tools/mailpit -d "$MAILPIT_DB" --disable-version-check --quiet \
-    --smtp 0.0.0.0:1025 --listen 0.0.0.0:8025 \
-    > logs/mailpit.log 2>&1 &
+# On EC2, set MAILPIT_WEBROOT=/mail in .env so nginx can expose the
+# inbox at http://<public-ip>/mail (port 80) for remote judges.
+MAILPIT_ARGS=( -d "$MAILPIT_DB" --disable-version-check --quiet
+               --smtp 0.0.0.0:1025 --listen 0.0.0.0:8025 )
+if [ -n "${MAILPIT_WEBROOT:-}" ]; then
+    MAILPIT_ARGS+=( --webroot "$MAILPIT_WEBROOT" )
+fi
+./tools/mailpit "${MAILPIT_ARGS[@]}" > logs/mailpit.log 2>&1 &
 MAILPIT_PID=$!
 echo "    pid=$MAILPIT_PID  log=logs/mailpit.log"
 

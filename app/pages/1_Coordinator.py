@@ -348,10 +348,14 @@ with act_l:
 
         if emailed:
             r0 = emailed[0]
+            inbox = os.getenv("MAILPIT_UI_URL", "http://localhost:8025")
             st.success(
                 f"📧 Emailed **{r0.get('donor_name', 'donor')}** for patient "
-                f"**{r0.get('patient_name', '?')}** — check MailPit at "
-                f"http://localhost:8025."
+                f"**{r0.get('patient_name', '?')}** — check MailPit inbox."
+            )
+            st.markdown(
+                f"<a href='{inbox}' target='_blank'>Open MailPit →</a>",
+                unsafe_allow_html=True,
             )
             st.cache_data.clear()
         elif confirmed:
