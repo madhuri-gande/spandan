@@ -12,15 +12,32 @@ escalates to additional donors automatically — without human nudging.
 
 ## Live demo (EC2)
 
+**Share this URL on WhatsApp** (clickable domain, not a raw IP):
+
 | | URL |
 |---|---|
-| **Coordinator dashboard** | http://98.84.159.117 |
-| **MailPit inbox** (sent emails) | http://98.84.159.117/mail |
+| **Coordinator dashboard** | http://spandan-demo.98.84.159.117.nip.io |
+| **MailPit inbox** (sent emails) | http://spandan-demo.98.84.159.117.nip.io/mail |
 | **GitHub** | https://github.com/madhuri-gande/spandan |
+
+Direct IP (also works): http://98.84.159.117
 
 **Login:** username `coordinator` · password set by deployer (not in repo).
 
 **Stack:** EC2 `t3.small` · Amazon Linux 2023 · nginx → Streamlit · MailPit · DynamoDB · Bedrock Claude Haiku 4.5
+
+### Even shorter name (optional, ~5 min)
+
+Sign up at [DuckDNS](https://www.duckdns.org), create subdomain `spandan-demo`, then on EC2:
+
+```bash
+# Add DUCKDNS_TOKEN=... and DUCKDNS_DOMAIN=spandan-demo to .env
+./deploy/duckdns-update.sh
+# Set PUBLIC_BASE_URL=http://spandan-demo.duckdns.org in .env, update
+# REPLY_BASE_URL / MAILPIT_UI_URL, then: sudo systemctl restart spandan
+```
+
+You get **http://spandan-demo.duckdns.org** — ideal for WhatsApp and slides.
 
 ---
 
