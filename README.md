@@ -10,30 +10,36 @@ escalates to additional donors automatically — without human nudging.
 
 ---
 
-## Live demo (EC2)
+## Live demo (EC2) — try now
 
 | | URL |
 |---|---|
-| **Coordinator dashboard** | http://98.84.159.117 |
-| **MailPit inbox** (sent emails) | http://98.84.159.117/mail |
+| **Coordinator dashboard** | **http://98.84.159.117** |
+| **MailPit inbox** (sent emails) | **http://98.84.159.117/mail** |
 | **GitHub** | https://github.com/madhuri-gande/spandan |
+| **Pitch deck (PPT + QR)** | [docs/Spandan_Hackathon_Pitch.pptx](docs/Spandan_Hackathon_Pitch.pptx) |
+| **Submission pack** | [docs/SUBMISSION.md](docs/SUBMISSION.md) |
 
-**Login:** username `coordinator` · password set by deployer (not in repo).
+**Login:** username `coordinator` · password shared privately with judges (not in repo).
 
-**Stack:** EC2 `t3.small` · Amazon Linux 2023 · nginx → Streamlit · MailPit · DynamoDB · Bedrock Claude Haiku 4.5
+**Stack:** EC2 `t3.small` · Amazon Linux 2023 · nginx :80 → Streamlit · MailPit `/mail` · DynamoDB · Bedrock Claude Haiku 4.5
 
-### WhatsApp-friendly link (recommended)
+### Share on WhatsApp (Bitly — recommended)
 
-Raw IPs often don't hyperlink in WhatsApp. Use **DuckDNS** (~5 min, free):
+Raw IPs often don't hyperlink in chat apps. Create two short links at [bitly.com](https://bitly.com) or [tinyurl.com](https://tinyurl.com):
 
-1. Sign in at [duckdns.org](https://www.duckdns.org) → create subdomain **`spandan-demo`**
-2. Set IP to **`98.84.159.117`**
-3. On EC2, add `DUCKDNS_TOKEN=...` to `.env`, run `./deploy/duckdns-update.sh`
-4. Set `PUBLIC_BASE_URL=http://spandan-demo.duckdns.org` (+ update `REPLY_BASE_URL` / `MAILPIT_UI_URL`), restart spandan
+| Destination | Paste this URL when creating the short link |
+|---|---|
+| Dashboard | `http://98.84.159.117` |
+| MailPit inbox | `http://98.84.159.117/mail` |
 
-Share: **http://spandan-demo.duckdns.org**
+Share the Bitly links — they work on any phone and redirect to the live EC2 demo.
 
-> **Note:** `*.nip.io` hostnames are blocked on many Indian/corporate networks — use the direct IP or DuckDNS instead.
+### QR codes (for slides / print)
+
+Generated in `docs/assets/` (`qr-dashboard.png`, `qr-mailpit.png`, `qr-github.png`) and on **slide 8** of the pitch deck.
+
+> **Note:** EC2 runs 24/7 independently of your laptop. Sleeping your Mac does **not** take the demo down.
 
 ---
 
@@ -190,8 +196,14 @@ spandan/
 ├── tools/
 │   ├── install_mailpit.sh     Cross-platform MailPit downloader
 │   └── seed_pipeline.py       CLI seeder (alt to dashboard button)
+├── docs/
+│   ├── Spandan_Hackathon_Pitch.pptx   Judge-facing deck with QR codes
+│   ├── SUBMISSION.md                  Copy-paste submission pack
+│   └── assets/                        QR code images
 ├── deploy/
-│   └── ec2-setup.sh           One-shot EC2 bootstrap
+│   ├── ec2-setup.sh           One-shot EC2 bootstrap
+│   ├── nginx-spandan.conf     Reverse proxy :80 → Streamlit + /mail
+│   └── duckdns-update.sh      Optional free subdomain
 ├── run-stack.sh               Local dev launcher (Streamlit + MailPit)
 ├── requirements.txt
 ├── .env.example               Env template (NO secrets)
